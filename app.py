@@ -2157,4 +2157,4 @@ def get_operation_diff(operation, workspace_dir):
 
 if __name__ == "__main__":
     # Run with eventlet server
-    socketio.run(app, debug=False, host="0.0.0.0", port=5000)
+    socketio.run(app, debug=False, host="0.0.0.0", port=3001)
