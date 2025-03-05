@@ -1,27 +1,29 @@
 /* Variables */
 :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg-dark: #1e1e1e;
-    --bg-panel: #252526;
-    --bg-hover: #2d2d2d;
-    --bg-active: #37373d;
+    --primary: #2de708;
+    --primary-hover: #d7fa10;
+    --bg-dark: #000000;
+    --bg-panel: #1b1b1b;
+    --bg-hover: #040404;
+    --bg-active: #15151b;
     --text-primary: #d4d4d4;
-    --text-secondary: #808080;
+    --text-secondary: #939292;
     --border-color: #3e3e42;
     --sidebar-width: 549px;
+    --transition-duration: 0.3s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Logo Styling */
 .jarvis-logo {
     width: 156px;
     height: 156px;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-duration) var(--transition-ease);
     margin-bottom: 1rem;
 }
 
 .jarvis-logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .logo-title {
@@ -32,6 +34,7 @@
     background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    transition: background var(--transition-duration) var(--transition-ease);
 }
 
 /* Main Content Area */
@@ -39,30 +42,37 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
+    transition: transform var(--transition-duration) var(--transition-ease);
 }
 
 .content-bubble {
     min-height: unset;
     height: auto;
     margin-top: auto; /* Push to bottom */
+    transition: box-shadow var(--transition-duration) var(--transition-ease);
+}
+
+.content-bubble:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .code-input-area {
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .code-input-area:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
 /* Layout Adjustments */
 .workspace-panel, #chatMode {
     width: var(--sidebar-width);
     background: var(--bg-panel);
+    transition: background var(--transition-duration) var(--transition-ease);
 }
 
 /* Base Styles */
@@ -70,21 +80,24 @@ body {
     background: var(--bg-dark);
     color: var(--text-primary);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background var(--transition-duration) var(--transition-ease);
 }
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
     background: var(--bg-dark);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
     background: var(--bg-hover);
-    border-radius: 4px;
+    border-radius: 10px;
+    transition: background var(--transition-duration) var(--transition-ease);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -98,11 +111,11 @@ body {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     border-radius: 8px;
     padding: 8px;
-    transition: all 0.3s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .CodeMirror:focus-within {
-    box-shadow: 0 0 0 2px var(--primary);
+    box-shadow: 0 0 0 3px var(--primary);
 }
 
 /* Panel Styling */
@@ -110,13 +123,13 @@ body {
     background: var(--bg-panel);
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .panel:hover {
     border-color: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
 }
 
 /* Button Styles */
@@ -158,6 +171,48 @@ body {
 .btn-secondary.active:hover {
     background: var(--primary-hover);
 }
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all var(--transition-duration) var(--transition-ease);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-panel);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary.active {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary.active:hover {
+    background: var(--primary-hover);
+}
 
 /* Button Sizes */
 .btn-sm {
@@ -169,23 +224,25 @@ body {
 .file-tree {
     padding: 0.5rem;
     font-size: 0.875rem;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .file-tree-item {
     padding: 0.25rem 0.5rem;
     margin: 0.125rem 0;
+    transition: background var(--transition-duration) var(--transition-ease), transform var(--transition-duration) var(--transition-ease);
 }
 
 .file-tree-item:hover {
     background: var(--bg-hover);
-    transform: translateX(2px);
+    transform: translateX(4px);
 }
 
 .file-tree-item i {
     width: 1.25rem;
     text-align: center;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .file-tree-item i.fa-folder,
@@ -212,7 +269,7 @@ body {
     border-left: 1px solid var(--border-color);
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
-    transition: all 0.3s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .directory-content > div {
@@ -227,7 +284,7 @@ body {
     width: 0.75rem;
     height: 1px;
     background: var(--border-color);
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .directory-content > div:hover::before {
@@ -244,6 +301,7 @@ body {
     border-radius: 1rem;
     word-wrap: break-word;
     line-height: 1.5;
+    transition: box-shadow var(--transition-duration) var(--transition-ease);
 }
 
 .chat-message.user {
@@ -267,6 +325,7 @@ body {
     padding: 1rem;
     margin: 0.5rem 0;
     overflow-x: auto;
+    transition: box-shadow var(--transition-duration) var(--transition-ease);
 }
 
 .chat-message code {
@@ -287,13 +346,13 @@ body {
     border-radius: 1rem;
     padding: 0.75rem 1rem;
     line-height: 1.5;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--transition-duration) var(--transition-ease);
 }
 
 #chatInput:focus {
     outline: none;
     border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 #chatInput::placeholder {
@@ -306,10 +365,11 @@ body {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #4b5563 #1f2937;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 #chatHistory::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 #chatHistory::-webkit-scrollbar-track {
@@ -319,6 +379,11 @@ body {
 #chatHistory::-webkit-scrollbar-thumb {
     background-color: #4b5563;
     border-radius: 3px;
+    transition: background var(--transition-duration) var(--transition-ease);
+}
+
+#chatHistory::-webkit-scrollbar-thumb:hover {
+    background-color: #60a5fa;
 }
 
 /* Message timestamp and status */
@@ -346,7 +411,7 @@ body {
 .chat-message a {
     color: #60a5fa;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--transition-duration) var(--transition-ease);
 }
 
 .chat-message a:hover {
@@ -430,12 +495,12 @@ body {
     border-radius: 0.5rem;
     background-color: #1f2937;
     color: #e5e7eb;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .chat-input-buttons button:hover {
     background-color: #374151;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .chat-input-buttons button:active {
@@ -895,11 +960,11 @@ body {
 
 /* Animations */
 .slide-up {
-    animation: slideUp 0.5s ease;
+    animation: slideUp var(--transition-duration) var(--transition-ease);
 }
 
 .fade-in {
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn var(--transition-duration) var(--transition-ease);
 }
 
 @keyframes fadeIn {
@@ -925,7 +990,7 @@ body {
 
 /* Directory Content Animation */
 .directory-content[style*="display: block"] {
-    animation: slideDown 0.3s ease;
+    animation: slideDown var(--transition-duration) var(--transition-ease);
 }
 
 /* Chat Content Styling */
@@ -1008,7 +1073,7 @@ body {
     color: var(--primary);
     text-decoration: none;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
+    transition: border-color var(--transition-duration) var(--transition-ease);
 }
 
 .chat-text-content a:hover {
@@ -1017,12 +1082,12 @@ body {
 
 /* Input Areas */
 textarea {
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 2px var(--primary-hover);
+    box-shadow: 0 0 0 3px var(--primary-hover);
 }
 
 /* Tree View Styling */
@@ -1044,7 +1109,7 @@ textarea:focus {
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .tree-item .folder-header:hover,
@@ -1062,7 +1127,7 @@ textarea:focus {
     margin-left: 1.25rem;
     padding-left: 1rem;
     border-left: 1px solid var(--border-color);
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .tree-item.expanded > .children {
@@ -1092,7 +1157,7 @@ textarea:focus {
     width: 1.25rem;
     text-align: center;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
     margin-right: 0.5rem;
 }
 
@@ -1135,7 +1200,7 @@ textarea:focus {
     font-size: 10px;
     color: var(--text-secondary);
     transform: rotate(0deg);
-    transition: transform 0.15s ease;
+    transition: transform var(--transition-duration) var(--transition-ease);
 }
 
 .tree-item.folder.expanded > .folder-header::before {
@@ -1272,7 +1337,7 @@ textarea:focus {
     padding: 1rem 1.5rem;
     border-radius: 0.5rem;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 .legacy-btn-primary {
@@ -1283,7 +1348,7 @@ textarea:focus {
 .legacy-btn-primary:hover {
     background-color: #1d4ed8;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .legacy-btn-secondary {
@@ -1312,7 +1377,7 @@ textarea:focus {
 .legacy-btn-purple:hover {
     background-color: #1d4ed8;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .legacy-btn-danger {
@@ -1323,7 +1388,7 @@ textarea:focus {
 .legacy-btn-danger:hover {
     background-color: #b91c1c;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .legacy-btn-sm {
@@ -1336,7 +1401,7 @@ textarea:focus {
     width: 1.25rem;
     text-align: center;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
     margin-right: 0.5rem;
 }
 
@@ -1397,7 +1462,7 @@ textarea:focus {
     right: 8px;
     display: flex;
     gap: 4px;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
 }
 
 /* Recommendation Button */
@@ -1410,7 +1475,7 @@ textarea:focus {
     border-radius: 4px;
     background: var(--primary);
     color: white;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1427,7 +1492,7 @@ textarea:focus {
     border-radius: 4px;
     background: var(--primary);
     color: white;
-    transition: all 0.2s ease;
+    transition: all var(--transition-duration) var(--transition-ease);
     display: flex;
     align-items: center;
     justify-content: center;
